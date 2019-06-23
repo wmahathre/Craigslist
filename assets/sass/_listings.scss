@@ -1,0 +1,196 @@
+.listings-page {
+    // listings-page in line 19 of Listing.js
+    background: #fff;
+    #filter {
+        display: flex;
+    // Having a div within #filter caused the display flex to not work
+        flex-direction: row;
+        flex-wrap: nowrap;
+        padding: 50px 0;
+
+        // .form-group{
+        //     display: flex;
+        //     flex-direction: column;           
+        //    label{
+        //        font-size: .8rem;
+        //         font-weight: 500;
+        //         margin-bottom: .8rem;
+        // }
+
+        //     select {
+        //         background: #fff;
+        //         border-radius: 5px;
+        //         font-size: .7rem;
+        //         padding: 10px;
+        //         min-width: 100px;
+        //         // width of box
+        //         border: 2px solid #ADBED2;
+        //         color: #1b1b1b;
+        //         margin-right: 20px;
+        //         // margin-bottom: 10px;
+        // }
+
+        // &.button {
+        //     flex-direction: row;
+        //     align-items: flex-end;
+        //     // row makes update and reset horizontally next to each other
+        //     // flex end brings it to the bottom
+        // }
+        // .primary-btn {
+        //     padding: 10px 20px;
+        //     background: #2A7DDD
+        // }
+        // .reset-btn{
+        //     background: #F7F8FA;
+        //     &:hover{
+        //         background: #F7F8FA;
+        //         // when you hover over the reset button you want it to be this color
+        //     }
+        // }
+        // .primary-btn, .reset-btn {
+        //     border-radius: 5px;
+        //     // made the btn edge round
+        //     cursor: pointer;
+        //     padding: 10px 20px;
+        //     // primary and reset btn need to be the same so they don't look off.
+        //     margin-right: 20px;
+        // }
+  
+        // }
+       
+    }
+    // Extra Extra
+    .form-group{
+        display: flex;
+        flex-direction: column;           
+       label{
+           font-size: .8rem;
+            font-weight: 500;
+            margin-bottom: .8rem;
+    }
+
+        select {
+            background: #fff;
+            border-radius: 5px;
+            font-size: .7rem;
+            padding: 10px;
+            min-width: 100px;
+            // width of box
+            border: 2px solid #ADBED2;
+            color: #1b1b1b;
+            margin-right: 20px;
+            // margin-bottom: 10px;
+    }
+
+    &.button {
+        flex-direction: row;
+        align-items: flex-end;
+        // row makes update and reset horizontally next to each other
+        // flex end brings it to the bottom
+    }
+    .primary-btn {
+        padding: 10px 20px;
+        background: #2A7DDD
+    }
+    .reset-btn{
+        background: #F7F8FA;
+        &:hover{
+            background: #F7F8FA;
+            // when you hover over the reset button you want it to be this color
+        }
+    }
+    .primary-btn, .reset-btn {
+        border-radius: 5px;
+        // made the btn edge round
+        cursor: pointer;
+        padding: 10px 20px;
+        // primary and reset btn need to be the same so they don't look off.
+        margin-right: 20px;
+    }
+
+    }
+    #list-view {
+        background: #F7F8FA;
+        padding: 20px 0;
+        //gives us space
+        .white-box{
+            // put a white box inside the list-view to adjust its padding inside without the grey color
+            background: white;
+            //gives us white space color in the middle
+            padding: 20px;
+
+        }
+        .change-view{
+            display: flex;
+            flex-direction: row;
+        }
+        .all-items{
+            padding: 20px 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            // gives 4 columns
+            grid-gap: 20px 20px;
+            // grip-gap gives gap in between each image
+            .item{
+                box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.37);
+                // Website for box-shadow      https://www.cssmatic.com/box-shadow
+                border-radius: 5px;
+                overflow: hidden;
+                // overflow hidden won't override the little curves if there is an image
+                .image{
+                    background: url("https://article.images.consumerreports.org/prod/content/dam/CRO%20Images%202019/Cars/January/CR-Cars-InlineHero-2019-Acura-ILX-A-Spec-f-1-19");
+                    height: 250px;
+                    background-size: cover;
+                    // covers its full container
+                    background-position: center center;
+                    //position the image more to the center
+                    background-repeat: no-repeat;
+                    position: relative;
+                    padding: 10px;
+                    // position relative. Keep any element that we use inside of it 
+                    .price {
+                        background: #fff;
+                        position: absolute;
+                        padding: 5px 10px;
+                        // setting the padding less in the top and bottom made it appear smaller than 10px all around
+                        color: green;
+                        border-radius: 3px;
+                    }
+                }
+                .details {
+                    padding: 10px;
+                    position: relative;
+                    // position relative so the star wont move all the way right to the way outside the box
+
+                    .fa-star{
+                        position: absolute;
+                        top: 20px;
+                        right: 10px;
+                        font-size: 1.4rem;
+                        // font-size can increase a small icon
+                        &:hover {
+                            cursor: pointer;
+                            color: gold;
+                        }
+                    }
+                    h5{
+                        font-size: .9rem;
+                        color: #394e77;
+                        line-height: 1.5;
+                        // adds height to the top and bottom of the element
+                        margin-bottom: 10px;
+                        text-transform: capitalize;
+                    }
+                    h6{
+                        font-size: .7rem;
+                        color: #565d68;
+                        text-transform: capitalize;
+                    }
+                }
+            }
+        }
+    }
+}
+// need to reset yarn run watch and node server b/c you can't notice changes on new files.
+
+

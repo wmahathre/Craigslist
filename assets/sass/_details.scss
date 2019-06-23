@@ -1,0 +1,192 @@
+.details-page {
+    // details-page in line 18 of Details.js
+    background: #F7F8FA;
+    padding: 20px 0;
+    // The padding allows the color to show
+    .white-box{
+        padding: 20px;
+        background: #fff;
+    }
+    .submenu{
+        display: flex;
+        justify-content: space-between;
+        // Makes .direction go to the left and .sub-links go to the right
+        // The justify-content property aligns the flexible container's items when the items do not use all available space on the main-axis (horizontally).
+        // space-between	Items are positioned with space between the lines
+
+        a {
+            // This will change any anchor <a> tag under .submenu
+            color: #2A7DDD;
+            padding: 20px;
+            text-decoration: none;
+        }
+
+        .direction{
+            display: flex;
+            flex-direction: row;
+            // Puts Prev and next besides each other
+            // & > a{
+            //     & > div will target all div within the class it's in 
+            //     padding: 20px;
+            //     text-decoration: none;
+            // }
+
+        }
+        .sub-links{
+            display: flex;
+            flex-direction: row;
+            // & > a{
+            //     color: #2A7DDD;
+            //     padding: 20px;
+            // }
+
+        }
+    }
+
+    .content-area {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        // split the left media column and right detail column;
+        grid-gap: 20px;
+        // puts a grap between the columns
+
+        .media-column {
+            .gallery{
+                .slider{
+
+                }
+                .main-image{
+                    position: relative;
+                    .arrows {
+                        top: 0;
+                        bottom: 0;
+                        // width: 80px;
+                        padding: 0 15px;
+                        // padding is an alternative to giving the arrow box a set width 
+                        height: 100%;
+                        position: absolute;
+                        background: rgba(0,0,0, .5);
+                        display: flex;
+                        align-items: center;
+                        // brings the arrow to the middle of the page from the top
+                        justify-content: center;
+                        // moves the arrow to the center from the left
+                        font-size: 3rem;
+                        // increases arrows size
+                        color: white;
+                        // change color of arrows to white
+                        cursor: pointer;
+                        // when you hover over the the arrow box you will see the hand icon
+                        &.left-arrow{
+                            // & means everything
+                            left: 0;
+                            // absolute left arrow will be on the left
+                        }
+                        &.right-arrow{
+                            right: 0;
+                            // absolute right arrow will be on the right
+                        }
+                    }
+                    .image-1{
+                        width: 100%;
+                        height: 400px;
+                        background-size: cover;
+                        // covers the whole image with the containers and size adjustments its in
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                    }
+                }
+                .thumbnails{
+                    display: grid;
+                    grid-template-columns: repeat(6, 1fr);
+                    .thumb-img{
+                        width: 100px;
+                        height: 100px;
+                        background-size: cover;
+                        // covers the whole image with the containers and size adjustments its in
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+        }
+
+
+     .details-column{
+         .date{
+            font-size: .9rem;
+            color: #424242;
+            margin-bottom: 15px;
+         }
+         .title {
+             font-size: 2rem;
+             font-weight: 500;
+             margin-bottom: 15px;
+         }
+         .price {
+             font-size: 1.7rem;
+             color: green;
+             font-weight: 500;
+             margin-bottom: 30px;
+         }
+
+         label{
+            font-weight: 700;
+            font-size: .7rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+            // display: block; Displays an element as a block element (like <p>). It starts on a new line, and takes up the whole width
+            //Put label here to target .Info (VIN) and .Descrption (Description)
+        }
+         .more-details{
+             display: grid;
+             grid-template-columns: repeat(3, 1fr);
+             // 3 columns same size
+             grid-gap: 15px;
+             // gibes gap between columns
+             border-bottom: 2px solid #F6F6F7;
+             // gray line beneath .more-details
+             padding-bottom: 30px;
+             // adds the bording more to the bottom so you can have space inbetween. Pushes the border-bottom line more to the bottom
+             margin-bottom: 30px;
+             // Pushes the Description more down
+                .Info{
+                    // label{
+                    //     font-weight: 700;
+                    //     font-size: .7rem;
+                    //     text-transform: uppercase;
+                    //     margin-bottom: 10px;
+                    //     display: block;
+                    //     // display: block; Displays an element as a block element (like <p>). It starts on a new line, and takes up the whole width
+                    // Since we want label in the .description we put it outside of this class and under price
+                    // }
+                    h5 {
+                        font-size: .9rem;
+                        font-weight: 300;
+                        text-transform: capitalize;
+                    }
+                }
+         }
+         
+         .description{
+             p{
+                 color: #424242;
+                font-size: .9rem;
+                // controls the size of text
+                line-height: 1.5;
+                //controls the height of text
+                margin-bottom: 1.5rem;
+                // puts a space between paragraphs
+
+             }
+         }
+     
+        }   
+    
+
+    }
+
+}
