@@ -1,0 +1,159 @@
+@import url( 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700');
+@import "reset";
+@import "home";
+@import "listings";
+@import "details";
+
+* {
+  box-sizing: border-box;
+  // controls the width and height of the whole page
+   /* The box-sizing property defines how the width and height of an element are calculated: should they include padding and borders, or not. */
+    /* Border Box- The width and height properties (and min/max properties) includes content, padding and border */
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-image: linear-gradient(135deg, rgba(52,69,247,.8) 0%, rgba(214,39,230,.8) 100%),
+   url("http://cdn-image.travelandleisure.com/sites/default/files/1496170657/new-york-city-skyline-manhattan-dusk-INTERESTNYC0617.jpg");
+   // the alpha is the opacity which is .8   You need a comma after the color
+   // website for color https://www.cssmatic.com/gradient-generator#'\-moz\-linear\-gradient\%28\-45deg\%2C\%20rgba\%2852\%2C69\%2C247\%2C1\%29\%200\%25\%2C\%20rgba\%28214\%2C39\%2C230\%2C1\%29\%20100\%25\%29\%3B'
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 100vh;
+  // background: purple;
+}
+
+header{
+  padding: 20px;
+  display: flex;
+  flex: auto;
+    // display: flex allows you to use flex- direction, wrap, flow, justify-content, align-items, align-content
+  // flex: auto This is equivalent to flex: 1 1 auto. Beware, this is not the default value. It sizes the item based on its width/height properties, but makes it fully flexible so that they absorb any extra space along the main axis.
+
+  flex-flow: row nowrap;
+  // The flex-flow property is a shorthand property for setting both the flex-direction and flex-wrap properties.
+  // row nowrap will be on the same horizontal line
+  justify-content: space-between;
+  // The justify-content property is used to align the flex items: left, right, or center
+  // space-between spreads out the space of the items.
+  color: white;
+}
+
+.fas {
+  margin-left: 10px;
+}
+
+.left-menu {
+  display: flex;
+  // brings it right next to each other
+}
+
+.logo {
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.city {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 20px;
+  // padding gave space away from logo
+}
+
+.right-menu {
+  display: flex;
+  
+}
+
+.user-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-dropdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 20px;
+  // since user-dropdown is between user-img and post-btn you can edit this padding only so it gives space between them
+}
+
+.post-btn {
+  font-weight: 300;
+  // boldness/thickness of font
+  text-transform: capitalize;
+  padding: 15px 20px;
+  // 15px top and bottom, 20px left and right
+  background: rgb(93, 198, 239);
+  // color from colorpicker
+  color: white;
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  // contains in everything below .home in a box like
+}
+// h1 {
+//   font-weight: 100;
+//   font-size: 50px;
+// }
+
+// .home {
+//   height: 100%;
+//   width: 100%;
+//   text-align: center;
+
+//   img {
+//     width: 100%;
+//     max-width: 300px;
+//     margin: 0 auto;
+//   }
+
+//   .Aligner {
+//     min-height: 100vh;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//   }
+
+//   .Aligner-item {
+//     max-width: 50%;
+//   }
+
+//   .menu {
+//     ul {
+//       li {
+//         padding: 10px 15px;
+//         display: inline-block;
+//         font-family: 'Roboto', sans-serif;
+//         font-size: 18px;
+//         font-weight: 500;
+//       }
+//     }
+//   }
+
+//   .version-num {
+//     background: #E8E8E8;
+//     border-radius: 4px;
+//     padding: 7px 15px;
+//     display: inline-block;
+//     font-size: 12px;
+//     margin: 10px 0 20px;
+//   }
+
+//   a {
+//     text-decoration: none;
+//     color: #30395C;
+//     transition: all 0.3s ease-in-out;
+
+//     &:hover {
+//       color: #43D4D6;
+//     }
+//   }
+// }

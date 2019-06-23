@@ -1,0 +1,96 @@
+.home {
+// .home in line 56 of Home.js
+h1 {
+    font-size: 4rem;
+    text-align: center;
+    text-transform: capitalize;
+    color:white;
+    padding: 100px 0;
+    // 100px top and bottom 0 left and right
+
+}
+    .links {
+        background: rgba(0,0,0,.5);
+        // black with opacity of .7 so you can see through the background and see the image
+        display: grid;
+        grid-template-columns: repeat(7,1fr);
+        // repeat seven columns with 1 frame
+        grid-gap: 20px;
+        padding: 20px;
+        margin-bottom: 70px;
+        // puts space between the div and the input field
+       .categories {
+            .title {
+                font-size: 1.3rem;
+                color: white;
+                margin-bottom: 1rem;
+                // gives space underneath the title
+                font-weight: 700;
+
+            }
+            .group-links {
+                display: grid;
+                grid-template-columns: repeat(2,1fr);
+                
+                &.single-col {
+                    grid-template-columns: repeat(1, 1fr);
+                }
+            }
+            .link {
+                color: #fff;
+                font-weight: 300;
+                font-size: .8rem;
+                margin-bottom: .5rem;
+                // puts space on the bottom
+                text-decoration: none;
+                &:hover{
+                    color: red;
+                }
+            }
+       }
+    }
+    .trending {
+        max-width: 800px;
+        // adjust the section of trending width which include search input and everything below it.
+        margin: 0 auto;
+        .search {
+            width: 100%;
+            font-size: 2rem;
+            // increase box size
+            border-radius: 5px;
+            // rounds the edges
+            border: 1px solid #000;
+            // thickness and color of the border
+            padding: 10px;
+            // padding within the input box outside the text
+
+        }
+        .title {
+            font-size: 1rem;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+        .trending-tags {
+            text-align: center;
+            .tag{
+                padding: 10px 20px;
+                border-radius: 45px;
+                border: 1px solid #fff;
+                display: inline-block;
+                // display: inline-block tries to have the items on the same line
+                color: white;
+                margin-bottom: 20px;
+                // To put space on the column below
+                margin-right: 20px;
+                &:hover {
+                    background: white;
+                    color: black;
+                    // background when you hove is white and text is black
+                }
+            }
+        }
+    }
+}
