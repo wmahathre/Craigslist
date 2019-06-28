@@ -26,7 +26,9 @@ export default class App extends Component {
     return (
     <Router>     
     <div>
-      <Header/>
+      {/* :city allows the header to see and match the city params */}
+      <Route path="/:city" component={Header} />
+      {/* Doesnt have exact b/c we want it to show everywhere on the page that has a root / */}
       <Route exact path="/" component={Home} />
       <Route exact path="/:city" component={Home} />
       <Route exact path="/:city/:category" component={CAtegory} />

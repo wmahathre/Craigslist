@@ -56,12 +56,53 @@ header{
   align-items: center;
 }
 
-.city {
+.city-dropdown {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 15px 20px;
   // padding gave space away from logo
+  position: relative;
+  cursor: pointer;
+  
+  .scroll-area {
+    position: absolute;
+    background: rgba(0,0,0,.4);
+    top: 35px;
+    // left: 0;
+    min-width: 150px;
+    height: 30px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    // The overflow-y property specifies whether to clip the content, add a scroll bar, or display overflow content of a block-level element, when it overflows at the top and bottom edges.
+    // Use the overflow-x property to determine clipping at the left and right edges.
+    visibility: hidden;
+    // If it does not have the class active make it hidden
+    opacity: 0;
+    transition: all .5s ease-in-out;
+    // 2 built in css timing functions are ease-in and ease out
+    // east-in slow at beginning, fast/abrupt at the end. When things are moving out.
+    // ease-out fast/abrupt at the beginning, slow at the end. When things are moving out
+    // ease-in-out Specifies a transition effect with a slow start and end 
+
+    &.active{
+      visibility: visible;
+      // if it has the class active make it visible
+      top: 50px;
+      opacity: 1;
+      // the opacity property adds transparency to the background of an element, and to all of its child elements as well. This makes the text inside of a transparent elemnt hard to read. Opacity 1 is easy to read
+      // scrollbar wont show up if opacity is not there
+    }
+    // padding: 15px;
+    ul{
+      li{
+        padding: 15px;
+        &:hover {
+          background: rgba(0,0,0,.2);
+        }
+      }
+    }
+  }
 }
 
 .right-menu {
