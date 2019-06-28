@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 244:
+/***/ 245:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63,7 +63,7 @@ var App = function (_Component) {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
           null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__includes_Header_js__["a" /* default */], null),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Route */], { path: '/:city', component: __WEBPACK_IMPORTED_MODULE_3__includes_Header_js__["a" /* default */] }),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Route */], { exact: true, path: '/', component: __WEBPACK_IMPORTED_MODULE_4__pages_Home_js__["a" /* default */] }),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Route */], { exact: true, path: '/:city', component: __WEBPACK_IMPORTED_MODULE_4__pages_Home_js__["a" /* default */] }),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Route */], { exact: true, path: '/:city/:category', component: __WEBPACK_IMPORTED_MODULE_7__pages_Category_js__["a" /* default */] }),
@@ -90,7 +90,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__App__ = __webpack_require__(244);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__App__ = __webpack_require__(245);
 
 
 
@@ -113,6 +113,8 @@ __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODU
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -125,6 +127,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+
 var Header = function (_Component) {
   _inherits(Header, _Component);
 
@@ -133,17 +136,94 @@ var Header = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this));
 
-    _this.clickedBtn = function () {
-      console.log('swag');
+    _this.selectCity = function (city) {
+      _this.setState({
+        selectedCity: city
+      });
+    };
+
+    _this.loopCities = function () {
+      var self = _this;
+      return _this.state.citiesData.map(function (item, i) {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'li',
+          { key: i,
+            onClick: _this.selectCity.bind(null, item.title) },
+          item.title
+        )
+        // When you click the city drop down and scroll and select another city it will display that as the new city
+        ;
+      });
+    };
+
+    _this.clickedCityDropdown = function () {
+      _this.setState({
+        cityDropdown: !_this.state.cityDropdown
+        // whatever this state is make it the opposite which is true so when true it will drop down the menu
+      }, function () {
+        // once this change we also want it to do this
+        var city = _this.state.citiesData.filter(function (item) {
+          return item.title == _this.state.selectedCity;
+          // when citiesData.title = selectedCity return it
+        });
+        var _this$props = _this.props,
+            match = _this$props.match,
+            history = _this$props.history;
+
+        history.push('/' + city[0].slug);
+        // 
+      });
     };
 
     _this.state = {
-      name: 'Joe'
+      name: 'Joe',
+      cityDropdown: false,
+      // if its false it's not going to show the dropdown
+      selectedCity: 'New York City',
+      // this is the default
+      citiesData: []
     };
     return _this;
   }
 
   _createClass(Header, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      // before the component header shows up we want to get this data
+      var self = this;
+      // this = class
+      __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/cities')
+      // api/city gives all the categories for that city so basically everything on the homepage.
+      .then(function (response) {
+        // Also wants to change the URL of the city that is selected depending on the slug you choose.
+        var _self$props = self.props,
+            match = _self$props.match,
+            history = _self$props.history;
+
+        var city = response.data.filter(function (item) {
+          return item.title == match.params.city;
+          // when citiesData.title = selectedCity return it. Uses the server.js Header :city to match it
+        });
+
+        // when it comes back from the promise (gets data don't know how long it will take) then run the function. 
+        // when they send the response back we want to send it to the state
+        self.setState({
+          citiesData: response.data,
+          selectedCity: city[0].title
+          // })
+          //   console.log(response.data);
+          //   function brings the response data
+        }, function () {
+          // pass in a callback which is just a function.
+          console.log(self.state);
+          // To see what's inside of the state
+        });
+      }).catch(function (error) {
+        // handle error
+        console.log(error);
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -162,10 +242,19 @@ var Header = function (_Component) {
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
-              { className: 'city' },
-              'New York ',
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-chevron-down' }),
-              ' '
+              { className: 'city-dropdown',
+                onClick: this.clickedCityDropdown },
+              this.state.selectedCity,
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-chevron-down\n        ' + (this.state.cityDropdown ? 'fa-chevron-up' : 'fa-chevron-down') }),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'scroll-area ' + (this.state.cityDropdown ? 'active' : '') },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'ul',
+                  null,
+                  this.loopCities()
+                )
+              )
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -481,7 +570,7 @@ var Details = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(249);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(156);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -567,12 +656,49 @@ var Home = function (_Component) {
         return _this;
     }
 
+    //   componentWillMount(){
+    //     const self = this;
+    //     // this = class
+    //     axios.get('/api/categories')
+    //     // before the component loads do a axios call to the url and data
+    //     .then(function (response) {
+    //         // when it comes back from the promise (gets data don't know how long it will take) then run the function. 
+    //          // handle success
+    //         // when they send the response back we want to send it to the state
+    //         self.setState({
+    //             categoriesData: response.data
+    //         // })
+    //     //   console.log(response.data);
+    //     //   function brings the response data
+    //     }, () => {
+    //         // pass in a callback which is just a function.
+    //         console.log(self.state)
+    //         // To see what's inside of the state
+    //     })
+
+    // })
+    //     .catch(function (error) {
+    //       // handle error
+    //       console.log(error);
+    //     });
+
+    //   }
+
     _createClass(Home, [{
-        key: 'componentWillMount',
-        value: function componentWillMount() {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _props = this.props,
+                match = _props.match,
+                history = _props.history;
+
+            if (match.params.city == undefined) {
+                history.push('/nyc');
+            }
+
             var self = this;
             // this = class
-            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/categories')
+            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/api/' + match.params.city)
+            // api/city gives all the categories for that city so basically everything on the homepage.
             // before the component loads do a axios call to the url and data
             .then(function (response) {
                 // when it comes back from the promise (gets data don't know how long it will take) then run the function. 

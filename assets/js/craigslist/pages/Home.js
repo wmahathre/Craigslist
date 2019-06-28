@@ -14,31 +14,66 @@ export default class Home extends Component {
     }
   }
   
-  componentWillMount(){
-    const self = this;
-    // this = class
-    axios.get('/api/categories')
-    // before the component loads do a axios call to the url and data
-    .then(function (response) {
-        // when it comes back from the promise (gets data don't know how long it will take) then run the function. 
-         // handle success
-        // when they send the response back we want to send it to the state
-        self.setState({
-            categoriesData: response.data
-        // })
-    //   console.log(response.data);
-    //   function brings the response data
-    }, () => {
-        // pass in a callback which is just a function.
-        console.log(self.state)
-        // To see what's inside of the state
-    })
+//   componentWillMount(){
+//     const self = this;
+//     // this = class
+//     axios.get('/api/categories')
+//     // before the component loads do a axios call to the url and data
+//     .then(function (response) {
+//         // when it comes back from the promise (gets data don't know how long it will take) then run the function. 
+//          // handle success
+//         // when they send the response back we want to send it to the state
+//         self.setState({
+//             categoriesData: response.data
+//         // })
+//     //   console.log(response.data);
+//     //   function brings the response data
+//     }, () => {
+//         // pass in a callback which is just a function.
+//         console.log(self.state)
+//         // To see what's inside of the state
+//     })
 
-})
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    });
+// })
+//     .catch(function (error) {
+//       // handle error
+//       console.log(error);
+//     });
+
+//   }
+
+  componentDidMount(){
+      const {match, history} = this.props
+      if(match.params.city == undefined) {
+          history.push('/nyc')
+      }
+
+      const self = this;
+      // this = class
+      axios.get(`/api/${match.params.city}`)
+      // api/city gives all the categories for that city so basically everything on the homepage.
+      // before the component loads do a axios call to the url and data
+      .then(function (response) {
+          // when it comes back from the promise (gets data don't know how long it will take) then run the function. 
+           // handle success
+          // when they send the response back we want to send it to the state
+          self.setState({
+              categoriesData: response.data
+          // })
+      //   console.log(response.data);
+      //   function brings the response data
+      }, () => {
+          // pass in a callback which is just a function.
+          console.log(self.state)
+          // To see what's inside of the state
+      })
+  
+  })
+
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  });
 
   }
   
